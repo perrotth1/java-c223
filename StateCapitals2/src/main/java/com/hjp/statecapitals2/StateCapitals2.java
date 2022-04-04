@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -24,7 +25,9 @@ public class StateCapitals2 {
        
        System.out.println("=== STATES ===");
        int count = 0;
-       for( String state : stateCapitals.keySet() ){
+       String[] sortedStates = stateCapitals.keySet().toArray(new String[0]);
+       Arrays.sort(sortedStates);
+       for( String state : sortedStates ){
             System.out.print( state );
             if(count != stateCapitals.size() - 1){
                 System.out.print(", ");
