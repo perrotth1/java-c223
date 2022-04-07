@@ -13,7 +13,8 @@ public class App {
         UserIO io = new UserIOConsoleImpl();
         ClassRosterView view = new ClassRosterView(io);
         ClassRosterDao dao = new ClassRosterDaoFileImpl();
-        ClassRosterServiceLayer service = new ClassRosterServiceLayerImpl(dao);
+        ClassRosterAuditDao audit = new ClassRosterAuditDaoFileImpl();
+        ClassRosterServiceLayer service = new ClassRosterServiceLayerImpl(dao, audit);
         ClassRosterController controller = new ClassRosterController(view, service);
         controller.run();
     }

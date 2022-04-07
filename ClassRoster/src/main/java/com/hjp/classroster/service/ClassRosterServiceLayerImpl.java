@@ -5,14 +5,16 @@ import com.hjp.classroster.dto.*;
 import java.util.List;
 
 /**
- *
+ * 
  * @author Henry
  */
 public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
     private final ClassRosterDao dao;
+    private final ClassRosterAuditDao audit;
     
-    public ClassRosterServiceLayerImpl(ClassRosterDao _dao){
+    public ClassRosterServiceLayerImpl(ClassRosterDao _dao, ClassRosterAuditDao _audit){
         this.dao = _dao;
+        this.audit = _audit;
     }
 
     @Override
@@ -36,6 +38,9 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
         // We passed all our business rules checks so go ahead 
         // and persist the Student object
         dao.addStudent(_student.getStudentId(), _student);
+        
+        // The student was successfully created, now write to the audit log
+        audit.writeAuditEntry("Student " + _student.getStudentId() + " CREATED.");
     }
 
     @Override
@@ -50,7 +55,9 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
 
     @Override
     public Student removeStudent(String _studentId) throws ClassRosterPersistenceException {
-        return dao.removeStudent(_studentId);
+        Student removedStudent =  dao.removeStudent(_studentId);
+        audit.writeAuditEntry("Student " + removedStudent.getStudentId() + " REMOVED.");
+        return removedStudent;
     }
     
     //IMPLEMENTATION-PRIVATE METHODS
