@@ -1,19 +1,20 @@
 package com.hjp.classroster.controller;
 
 import com.hjp.classroster.ui.*;
-import com.hjp.classroster.dao.*;
 import com.hjp.classroster.dto.*;
+import com.hjp.classroster.service.*;
+import com.hjp.classroster.dao.*;
 /**
  *
  * @author Henry
  */
 public class ClassRosterController {
     ClassRosterView view;
-    ClassRosterDao dao;
+    ClassRosterServiceLayer service;
     
-    public ClassRosterController(ClassRosterView _view, ClassRosterDao _dao){
+    public ClassRosterController(ClassRosterView _view, ClassRosterServiceLayer _service){
         this.view = _view;
-        this.dao = _dao;
+        this.service = _service;
     }
     
     public void run(){
@@ -47,7 +48,7 @@ public class ClassRosterController {
                 }
             }
         }
-        catch(ClassRosterDaoException e){
+        catch(ClassRosterPersistenceException e){
             view.printError(e.getMessage());
         }
         
@@ -59,32 +60,42 @@ public class ClassRosterController {
         return( view.getSelection() );
     }
     
-    public void addStudent() throws ClassRosterDaoException{
+    public void addStudent() throws ClassRosterPersistenceException{
         view.printAddStudentBanner();
-        Student newStudent = view.getNewStudentInfo();
-        dao.addStudent(newStudent.getStudentId(), newStudent);
-        view.printSuccess();
+        boolean hasErrors = false;
+        do {
+            Student currentStudent = view.getNewStudentInfo();
+            try {
+                service.createStudent(currentStudent);
+                view.printSuccess();
+                hasErrors = false;
+            } catch (ClassRosterDuplicateIdException | ClassRosterDataValidationException e) {
+                hasErrors = true;
+                view.printError(e.getMessage());
+            }
+        } while (hasErrors);
         view.pressEnterContinue();
     }
-    public void listStudents() throws ClassRosterDaoException{
+    
+    public void listStudents() throws ClassRosterPersistenceException{
         view.printListStudentsBanner();
-        view.printAllStudents( dao.getAllStudents() );
+        view.printAllStudents( service.getAllStudents() );
         view.pressEnterContinue();
     }
-    public void viewStudent() throws ClassRosterDaoException{
+    public void viewStudent() throws ClassRosterPersistenceException{
         view.printViewStudentBanner();
         String id = view.readStudentId();
-        view.printStudentInfo( dao.getStudent(id) );
+        view.printStudentInfo( service.getStudent(id) );
         view.pressEnterContinue();
     }
-    public void removeStudent() throws ClassRosterDaoException{
+    
+    public void removeStudent() throws ClassRosterPersistenceException{
         view.printRemoveStudentBanner();
         String id = view.readStudentId();
         
-        boolean check = view.askConfirmation();
-        if(check){
-            view.printRemovalResult( dao.removeStudent(id) );
-        }
+        service.removeStudent(id);
+        
+        view.printSuccess();
         
         view.pressEnterContinue();
     }

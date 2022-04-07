@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface ClassRosterDao {
     
-    List<Student> getAllStudents() throws ClassRosterDaoException;
+    List<Student> getAllStudents() throws ClassRosterPersistenceException;
     
-    Student addStudent(String _id, Student _student) throws ClassRosterDaoException;
+    Student addStudent(String _id, Student _student) throws ClassRosterPersistenceException;
     
-    Student getStudent(String _id) throws ClassRosterDaoException;
+    Student getStudent(String _id) throws ClassRosterPersistenceException;
     
-    Student removeStudent(String _id) throws ClassRosterDaoException;
+    Student removeStudent(String _id) throws ClassRosterPersistenceException;
 }

@@ -21,13 +21,13 @@ public class ClassRosterDaoFileImpl implements ClassRosterDao {
     private final String DATA_FILE = "data.txt";
     
     @Override
-    public List<Student> getAllStudents() throws ClassRosterDaoException{
+    public List<Student> getAllStudents() throws ClassRosterPersistenceException{
         loadRoster();
         return new ArrayList<>(students.values());
     }
 
     @Override
-    public Student addStudent(String _id, Student _student) throws ClassRosterDaoException{
+    public Student addStudent(String _id, Student _student) throws ClassRosterPersistenceException{
         loadRoster();
         Student prevStudent = students.put(_id, _student);
         storeRoster();
@@ -35,13 +35,13 @@ public class ClassRosterDaoFileImpl implements ClassRosterDao {
     }
 
     @Override
-    public Student getStudent(String _id) throws ClassRosterDaoException{
+    public Student getStudent(String _id) throws ClassRosterPersistenceException{
         loadRoster();
         return students.get(_id);
     }
 
     @Override
-    public Student removeStudent(String _id) throws ClassRosterDaoException{
+    public Student removeStudent(String _id) throws ClassRosterPersistenceException{
         loadRoster();
         Student existingStudent = students.remove(_id);
         storeRoster();
@@ -65,13 +65,13 @@ public class ClassRosterDaoFileImpl implements ClassRosterDao {
         return line;
     }
     
-    public void loadRoster() throws ClassRosterDaoException{
+    public void loadRoster() throws ClassRosterPersistenceException{
         Scanner in;
         try{
             in = new Scanner( new BufferedReader( new FileReader(DATA_FILE) ) );
         }
         catch(java.io.FileNotFoundException e){
-            throw new ClassRosterDaoException("Could not load from file!", e);
+            throw new ClassRosterPersistenceException("Could not load from file!", e);
         }
         
         String buffer;
@@ -86,14 +86,14 @@ public class ClassRosterDaoFileImpl implements ClassRosterDao {
         in.close();
     }
     
-    public void storeRoster() throws ClassRosterDaoException {
+    public void storeRoster() throws ClassRosterPersistenceException {
         PrintWriter out;
         
         try{
             out = new PrintWriter( new FileWriter(DATA_FILE) );
         }
         catch(java.io.IOException e){
-            throw new ClassRosterDaoException("Could not store to file!", e);
+            throw new ClassRosterPersistenceException("Could not store to file!", e);
         }
         
         List<Student> studentList = this.getAllStudents();
