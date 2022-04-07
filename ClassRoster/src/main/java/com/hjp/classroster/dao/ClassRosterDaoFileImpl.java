@@ -18,7 +18,14 @@ import java.io.FileWriter;
 public class ClassRosterDaoFileImpl implements ClassRosterDao {
     private Map<String, Student> students = new HashMap<>();
     private final String DELIMITER = "::";
-    private final String DATA_FILE = "data.txt";
+    private final String DATA_FILE;
+    
+    public ClassRosterDaoFileImpl(){
+        this.DATA_FILE = "data.txt";
+    }
+    public ClassRosterDaoFileImpl(String _dataFile){
+        this.DATA_FILE = _dataFile;
+    }
     
     @Override
     public List<Student> getAllStudents() throws ClassRosterPersistenceException{
