@@ -7,7 +7,11 @@ import java.util.Objects;
  * @author Henry
  */
 public class Student {
-
+    private String firstName;
+    private String lastName;
+    private final String studentId;
+    private String cohort;
+    
     @Override
     public String toString() {
         return "Student{" + "firstName=" + firstName + ", lastName=" + lastName 
@@ -47,10 +51,7 @@ public class Student {
         }
         return Objects.equals(this.cohort, other.cohort);
     }
-    private String firstName;
-    private String lastName;
-    private final String studentId;
-    private String cohort;
+    
 
     public Student(String studentId) {
         this.studentId = studentId;
