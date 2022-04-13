@@ -5,15 +5,19 @@ import com.hjp.dvdlibrary.ui.*;
 import com.hjp.dvdlibrary.dto.*;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Henry Perrottet
  */
+@Component
 public class DVDLibraryController {
     private DVDLibraryView view;
     private DVDLibraryDaoAgg dao;
 
+    @Autowired
     public DVDLibraryController(DVDLibraryView _view, DVDLibraryDaoAgg _dao) {
         this.view = _view;
         this.dao = _dao;

@@ -17,7 +17,6 @@
 
     <!-- Bean definitions go here -->
    
-    <bean id="dao" class="com.hjp.classroster.dao.ClassRosterDaoFileImpl"/>
     <bean id="daoStub" class="com.hjp.classroster.dao.ClassRosterDaoStubImpl"/>
     <bean id="auditDaoStub" class="com.hjp.classroster.dao.ClassRosterAuditDaoStubImpl"/>
     <bean id="serviceLayer" class="com.hjp.classroster.service.ClassRosterServiceLayerImpl">

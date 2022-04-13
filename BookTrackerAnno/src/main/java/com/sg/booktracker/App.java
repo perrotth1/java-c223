@@ -1,12 +1,7 @@
 package com.sg.booktracker;
 
 import com.sg.booktracker.controller.BookController;
-import com.sg.booktracker.dao.BookDao;
-import com.sg.booktracker.dao.BookDaoMemoryImpl;
-import com.sg.booktracker.service.BookService;
-import com.sg.booktracker.ui.BookView;
-import com.sg.booktracker.ui.UserIO;
-import com.sg.booktracker.ui.UserIOConsoleImpl;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

@@ -1,10 +1,12 @@
 package com.hjp.dvdlibrary.ui;
 
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 /**
  *
  * @author Henry Perrottet
  */
+@Component
 public class UserIOConsoleImpl implements UserIO {
     private Scanner sc = new Scanner(System.in); 
     

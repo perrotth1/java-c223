@@ -19,11 +19,13 @@ import java.util.stream.Collectors;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Henry Perrottet
  */
+@Component
 public class DVDLibraryDaoFileImpl implements DVDLibraryDaoAgg {
     private final List<DVD> DVDList = new ArrayList<>();
     private final String DATA_FILE;

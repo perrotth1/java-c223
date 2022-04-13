@@ -3,13 +3,17 @@ package com.hjp.dvdlibrary.ui;
 import com.hjp.dvdlibrary.dto.*;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 /**
  *
  * @author Henry Perrottet
  */
+@Component
 public class DVDLibraryView {
     private UserIO io;
     
+    @Autowired
     public DVDLibraryView(UserIO _io) {
         this.io = _io;
     }
@@ -28,6 +32,7 @@ public class DVDLibraryView {
         io.print(" 12) Get newest movie in collection");
         io.print(" 13) Get oldest movie in collection");
         io.print(" 14) Get average number of notes associated with movies");
+        io.print(" 0) Exit");
     }
     public int getSelection() {
         return io.readInt("Please Enter Selection >");
