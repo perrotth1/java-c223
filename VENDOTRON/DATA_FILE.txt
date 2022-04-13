@@ -1,9 +1,9 @@
-1::Egg::Mixed Origin::1.00::2::It's a good old fashioned egg.
+1::Egg::Mixed Origin::1.00::1::It's a good old fashioned egg.
 2::Golden Egg::Mixed Origin::20.00::1::It has a beautiful luster.
 3::Rotten Egg::Mixed Origin::0.25::2::It's a wretched, putrid egg.
 4::Deviled Egg::Mixed Origin::3.50::5::It has a nice savory curry flavor.
 5::Tea Egg::China::5.00::2::It's savory with a subtle black tea flavor.
-6::Century Egg::China::7.00::3::It is pitch black and has a salty flavor.
+6::Century Egg::China::7.00::2::It is pitch black and has a salty flavor.
 7::Smoked Egg::China::3.25::3::It has a wonderful smoky taste.
 8::Shoyu Egg::Japan::1.75::10::It has a nice soy sauce taste.
 9::Black Hot-Spring Egg::Japan::12.00::3::It is black and stinks of sulfur from the hot springs.

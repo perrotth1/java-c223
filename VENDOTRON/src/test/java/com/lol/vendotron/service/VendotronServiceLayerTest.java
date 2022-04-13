@@ -4,13 +4,14 @@
  */
 package com.lol.vendotron.service;
 
-import com.lol.vendotron.dao.VendotronAuditDao;
-import com.lol.vendotron.dao.VendotronDao;
-import com.lol.vendotron.dao.VendotronDaoFileException;
-import com.lol.vendotron.dto.Egg;
+import com.lol.vendotron.dao.*;
+import com.lol.vendotron.dto.*;
+
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -21,10 +22,11 @@ public class VendotronServiceLayerTest {
     private VendotronServiceLayer service;
 
     public VendotronServiceLayerTest() {
-        VendotronDao dao = new VendotronDaoStubImpl();
-        VendotronAuditDao auditDao = new VendotronAuditDaoStubImpl();
-
-        service = new VendotronServiceLayerImpl(dao, auditDao);
+        ApplicationContext appContext = 
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        
+        service = appContext.getBean("serviceLayer", VendotronServiceLayerImpl.class); 
+        
     }
 
     @Test

@@ -13,11 +13,14 @@ import java.io.FileWriter;
 import java.util.Scanner;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Henry
  */
+@Component
 public class VendotronDaoFileImpl implements VendotronDao {
     private Map<Integer, Egg> eggs = new HashMap<>();
     private BigDecimal balance = new BigDecimal("0.00").setScale(2, RoundingMode.HALF_UP);
@@ -25,9 +28,11 @@ public class VendotronDaoFileImpl implements VendotronDao {
     private final String DATA_FILE;
     private final String DELIMITER = "::";
     
+    @Autowired
     public VendotronDaoFileImpl(){
         this.DATA_FILE = "DATA_FILE.txt";
     }
+    
     public VendotronDaoFileImpl(String _dataFile){
         this.DATA_FILE = _dataFile;
     }

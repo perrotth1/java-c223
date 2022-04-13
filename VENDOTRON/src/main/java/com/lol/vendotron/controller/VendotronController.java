@@ -14,20 +14,20 @@ import com.lol.vendotron.utils.CoinType;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author nicolemagpantay
  */
+@Component
 public class VendotronController {
 
     private VendotronServiceLayer service;
     private VendotronView view;
 
-    public VendotronController(VendotronServiceLayer service) {
-        this.service = service;
-    }
-
+    @Autowired
     public VendotronController(VendotronServiceLayer service, VendotronView view) {
         this.view = view;
         this.service = service;

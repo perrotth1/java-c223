@@ -13,16 +13,20 @@ import com.lol.vendotron.utils.CoinType;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Henry
  */
+@Component
 public class VendotronServiceLayerImpl implements VendotronServiceLayer {
 
     private VendotronDao dao;
     private VendotronAuditDao auditDao;
 
+    @Autowired
     public VendotronServiceLayerImpl(VendotronDao dao, VendotronAuditDao auditDao) {
         this.dao = dao;
         this.auditDao = auditDao;

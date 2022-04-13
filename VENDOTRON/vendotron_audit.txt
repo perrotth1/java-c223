@@ -94,3 +94,9 @@
 2022-04-13T10:26:01.824072900 : Egg was sold.
 2022-04-13T10:26:01.824072900 : Original amount of money: 3.00
 2022-04-13T10:26:01.825071700 : After purchasing: 2.00
+2022-04-13T17:10:56.880046100 : Century Egg was sold.
+2022-04-13T17:10:56.894039200 : Original amount of money: 7.00
+2022-04-13T17:10:56.896038300 : After purchasing: 0.00
+2022-04-13T17:20:23.093983 : Egg was sold.
+2022-04-13T17:20:23.110972400 : Original amount of money: 2.00
+2022-04-13T17:20:23.111971300 : After purchasing: 1.00

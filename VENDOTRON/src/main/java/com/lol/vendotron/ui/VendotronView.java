@@ -10,16 +10,20 @@ import com.lol.vendotron.dto.Egg;
 import com.lol.vendotron.utils.CoinType;
 import java.math.BigDecimal;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Nicole
  */
+@Component
 public class VendotronView {
 
     private UserIO io;
 
     // Constructor
+    @Autowired
     public VendotronView(UserIO io) {
         this.io = io;
     }

@@ -4,16 +4,9 @@
  */
 package com.lol.vendotron;
 
-import com.lol.vendotron.controller.VendotronController;
-import com.lol.vendotron.dao.VendotronAuditDao;
-import com.lol.vendotron.dao.VendotronAuditDaoFileImpl;
-import com.lol.vendotron.dao.VendotronDao;
-import com.lol.vendotron.dao.VendotronDaoFileImpl;
-import com.lol.vendotron.service.VendotronServiceLayer;
-import com.lol.vendotron.service.VendotronServiceLayerImpl;
-import com.lol.vendotron.ui.UserIO;
-import com.lol.vendotron.ui.UserIOConsoleImpl;
-import com.lol.vendotron.ui.VendotronView;
+import com.lol.vendotron.controller.*;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  *
@@ -21,15 +14,13 @@ import com.lol.vendotron.ui.VendotronView;
  */
 public class App {
     public static void main(String[] args) {
-        UserIO io = new UserIOConsoleImpl();
-        VendotronView view = new VendotronView(io);
-        VendotronDao dao = new VendotronDaoFileImpl();
-
-        // Instantiate the Audit DAO
-        VendotronAuditDao auditDao = new VendotronAuditDaoFileImpl();
-        VendotronServiceLayer service = new VendotronServiceLayerImpl(dao, auditDao);
-
-        VendotronController controller = new VendotronController(service, view);
+        AnnotationConfigApplicationContext appContext
+                = new AnnotationConfigApplicationContext();
+        
+        appContext.scan("com.lol.vendotron");
+        appContext.refresh();
+        
+        VendotronController controller = appContext.getBean("vendotronController", VendotronController.class);
 
         controller.run();
     }
